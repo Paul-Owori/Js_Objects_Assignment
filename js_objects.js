@@ -1,3 +1,6 @@
+var addressBook =[]
+var deletedContacts = []
+
 function contact (firstName, secondName, phoneNumber, email, street, city, country){
   this.firstName = firstName;
   this.secondName = secondName;
@@ -8,39 +11,41 @@ function contact (firstName, secondName, phoneNumber, email, street, city, count
   this.address.city = city;
   this.address.country = country;
   this.ID = Math.floor((Math.random() * 100000000) + 200000000);
-  
-  this.fullAddress = function(){
-    console.log (this.address.street + ", " + this.address.city + ", " + this.address.country);
-  }
-
-  this.deleteAddress = function(){
-    return(this.address = "Address was deleted! Use the newAddress function to edit address!");
-    console.log(this.address)
-  };
-
-  this.newAddress = function(a, b, c){
-    this.address = {}
-    this.address.street = a;
-    this.address.city = b;
-    this.address.country = c;
-    return this.address;
-  }
-
- /*this.editAddressField = function (field, edit){
-   this.address.(field) = edit;
-   */
- //this.howToEditAddresses = ;
-
-
+  addressBook.push([this.ID,this.firstName,[this]]);
 }
 
-var Moses = new contact ("Moses", "Kodero", "07792929292", "musa@gmail.com", "Lumumba Ave", "Kampala", "Uganda");
+var searchByID = (idNumber) => {
+  for(j=0; j<addressBook.length ; j++){
+    if(addressBook[j][0] === idNumber){
+      console.log("Contact found - ",addressBook[j][1] )
+      console.log(addressBook[j][2])
+    };
+    if(j+1 === addressBook.length && addressBook[j][0] != idNumber){
+      console.log("There is no contact with that ID.")
+    };
+  };
+
+};
+
+var Moses = new contact ("Moses", "Kodero", "07792929292", "musa@gmail.com", "Panya0", "Kampala", "Uganda");
+
+var Bill = new contact ("Bill", "Kodero", "07792929292", "musa@gmail.com", "Panya1", "Kampala", "Uganda");
+
+var Bugs = new contact ("Bugs", "Kodero", "07792929292", "musa@gmail.com", "Panya2", "Kampala", "Uganda");
+
+var Bob = new contact ("Bob", "Kodero", "07792929292", "musa@gmail.com", "Panya3", "Kampala", "Uganda");
+
+
+//CODE ENDS HERE. EVERYTHING BELOW IS EXPERIMENTATION
+
 
 //console.log(Moses.fullAddress())
 
 console.log(Moses)
 
-console.log (Moses.address)
+console.log(Moses.howToEditAddresses())
+
+console.log (Moses.editAddressField(street, "food"))
 
 console.log (Moses.deleteAddress())
 
@@ -50,7 +55,30 @@ console.log(Moses)
 
 
 
+this.howToEditAddress = function(){
+  return ("HOW TO EDIT THE ADDRESS FIELD;" +
+  "\n EITHER " + "\n 1. console.log(contactName.deleteAddress()); to clear the address object." +
+  " \n 2. console.log(contactName.newAddress(newStreetName, newCityName,\n newCountryName);" +
+  " to assign new values to the address field.)\n " + "\n OR " +
+  "\n 1. Edit directly by using" + "\n  console.log(contactName.address.addressField = new value);")
+};
 
+this.fullAddress = function(){
+  console.log (this.address.street + ", " + this.address.city + ", " + this.address.country);
+};
+
+this.deleteAddress = function(){
+  return(this.address = "Address was deleted! Use the newAddress function to edit address!");
+  console.log(this.address)
+};
+
+this.newAddress = function(a, b, c){
+  this.address = {}
+  this.address.street = a;
+  this.address.city = b;
+  this.address.country = c;
+  return this.address;
+};
 
 
 Math.floor((Math.random() * 100000000) + 200000000);
