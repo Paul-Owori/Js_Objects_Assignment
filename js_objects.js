@@ -7,7 +7,8 @@ function contact (firstName, secondName, phoneNumber, email, street, city, count
   this.address.street = street;
   this.address.city = city;
   this.address.country = country;
-
+  this.ID = Math.floor((Math.random() * 100000000) + 200000000);
+  
   this.fullAddress = function(){
     console.log (this.address.street + ", " + this.address.city + ", " + this.address.country);
   }
@@ -23,9 +24,16 @@ function contact (firstName, secondName, phoneNumber, email, street, city, count
     this.address.city = b;
     this.address.country = c;
     return this.address;
-    }
+  }
+
+ /*this.editAddressField = function (field, edit){
+   this.address.(field) = edit;
+   */
+ //this.howToEditAddresses = ;
+
 
 }
+
 var Moses = new contact ("Moses", "Kodero", "07792929292", "musa@gmail.com", "Lumumba Ave", "Kampala", "Uganda");
 
 //console.log(Moses.fullAddress())
@@ -45,7 +53,7 @@ console.log(Moses)
 
 
 
-
+Math.floor((Math.random() * 100000000) + 200000000);
 
 from n phone contacts address book. It should contain
 
