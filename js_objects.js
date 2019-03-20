@@ -1,5 +1,5 @@
 var addressBook =[]
-var deletedContacts = []
+var contactsBin = []
 
 function contact (firstName, secondName, phoneNumber, email, street, city, country){
   this.firstName = firstName;
@@ -15,14 +15,33 @@ function contact (firstName, secondName, phoneNumber, email, street, city, count
 }
 
 var searchByID = (idNumber) => {
+  contactExists = false;
   for(j=0; j<addressBook.length ; j++){
     if(addressBook[j][0] === idNumber){
-      console.log("Contact found - ",addressBook[j][1] )
-      console.log(addressBook[j][2])
+      console.log("Contact found - ",addressBook[j][1]);
+      console.log(addressBook[j][2]);
+      contactExists = true;
     };
-    if(j+1 === addressBook.length && addressBook[j][0] != idNumber){
+
+  }
+  if(contactExists === false){
       console.log("There is no contact with that ID.")
+  };
+
+};
+
+var deleteByID = (idNumber) => {
+  var checker = false
+  for(j=0; j<addressBook.length ; j++){
+    if(addressBook[j][0] === idNumber){
+      console.log("Contact " + addressBook[j][1] + " with ID number " + addressBook[j][0] +
+       " has been deleted. It can be recovered from the trashCan" )
+      contactsBin.push(addressBook[j])
+      addressBook.splice(j,1);
+      checker = true;
     };
+  };
+  if(checker === false){console.log("There is no contact with that ID.")
   };
 
 };
