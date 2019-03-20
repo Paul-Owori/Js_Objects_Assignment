@@ -22,28 +22,41 @@ var searchByID = (idNumber) => {
       console.log(addressBook[j][2]);
       contactExists = true;
     };
-
   }
   if(contactExists === false){
       console.log("There is no contact with that ID.")
   };
-
 };
 
 var deleteByID = (idNumber) => {
-  var checker = false
+  var contactExists = false
   for(j=0; j<addressBook.length ; j++){
     if(addressBook[j][0] === idNumber){
       console.log("Contact " + addressBook[j][1] + " with ID number " + addressBook[j][0] +
-       " has been deleted. It can be recovered from the trashCan" )
+       " has been deleted. It can be recovered from the contactsBin" )
       contactsBin.push(addressBook[j])
       addressBook.splice(j,1);
-      checker = true;
+      contactExists = true;
     };
   };
-  if(checker === false){console.log("There is no contact with that ID.")
+  if(contactExists === false){console.log("There is no contact with that ID.")
   };
+};
 
+var recoverByID = (idNumber) => {
+  contactExists = false;
+  for(j=0; j<contactsBin.length ; j++){
+    if(contactsBin[j][0] === idNumber){
+      console.log("Contact recovered - ",contactsBin[j][1]);
+      console.log(contactsBin[j][2]);
+      contactExists = true;
+      addressBook.push(contactsBin[j])
+      contactsBin.splice(j,1);
+    };
+  }
+  if(contactExists === false){
+      console.log("There is no contact with that ID.")
+  };
 };
 
 var Moses = new contact ("Moses", "Kodero", "07792929292", "musa@gmail.com", "Panya0", "Kampala", "Uganda");
