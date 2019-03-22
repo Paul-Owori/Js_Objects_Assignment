@@ -141,9 +141,9 @@ var permDel = (idNumber) => {
 
 
 /*
-The contactEdit() function doesnt work exactly as intended because it cannot target a contact by their ID.
-However, it still works if you target the object containing the contact instead.
-  -contactName parameter takes in the object name of the object to be targeted. This is a must to fill in,
+Ive edited the contact Edit function to work with ID numbers. The object name can now remain irrelevant and
+is not required to make any of the functions work.
+  -contactID parameter takes in the ID number of the contact to be targeted. This is a must to fill in,
   -contactField parameter takes in the name of the property being targeted. This is also a must to fill,
   -newInput parameter takes in the new input you intend for the targeted property, BUT it should be replaced with null
    as a placeholder if the property being targeted is the contact address.
@@ -152,20 +152,30 @@ However, it still works if you target the object containing the contact instead.
    b - fill in the new city value
    c - fill in the new country value
 */
-function contactEdit(contactName, contactField, newInput, a, b, c){
-  if(contactField === "firstName"){contactName.firstName = newInput};
-  if(contactField === "secondName"){contactName.secondName = newInput};
-  if(contactField === "phoneNumber"){contactName.phoneNumber = newInput};
-  if(contactField === "ID"){contactName.phoneNumber = newInput};
-  if(contactField === "address"){
-    function addressEdit (q, d, d){
-      contactName.address = {}
-      contactName.address.street = a;
-      contactName.address.city = b;
-      contactName.address.country = c;
-      return contactName.address;
+function contactEdit(contactID, contactField, newInput, a, b, c){
+
+  contactExists = false;
+  for(j=0; j<addressBook.length ; j++){
+    if(addressBook[j][0] === contactID){
+      if(contactField === "firstName"){addressBook[j][2][0].firstName = newInput};
+      if(contactField === "secondName"){addressBook[j][2][0].secondName = newInput};
+      if(contactField === "phoneNumber"){addressBook[j][2][0].phoneNumber = newInput};
+      if(contactField === "ID"){addressBook[j][2][0].phoneNumber = newInput};
+      if(contactField === "address"){
+        function addressEdit (q, d, d){
+          addressBook[j][2][0].address = {}
+          addressBook[j][2][0].address.street = a;
+          addressBook[j][2][0].address.city = b;
+          addressBook[j][2][0].address.country = c;
+          return addressBook[j][2][0].address;
+        };
+        addressEdit(a,b,c)
+      };
+    contactExists = true;
     };
-    addressEdit(a,b,c)
+  }
+  if(contactExists === false){
+      console.log("There is no contact with that ID.")
   };
 }
 
@@ -177,7 +187,7 @@ It's not necessary but is meant to help with navigation.
 function functionList (){console.log("List of all available functions;" +
 "\n 1. This function - functionList()" +
 "\n 2. contact (firstName, secondName, phoneNumber, email, street, city, country) " +
-"\n 3. contactEdit(contactName, contactField, newInput, a, b, c); " + "\n 4. permDel(idNumber)"
+"\n 3. contactEdit(contactID, contactField, newInput, a, b, c); " + "\n 4. permDel(idNumber)"
 + "\n 5. recoverByID(idNumber)" + "\n 6. deleteByID(idNumber)" + "\n 7. searchByID(idNumber)" +
 "\n ALSO" + "\n - You can console.log(addressBook)"  + "\n - You can console.log(contactsBin)"
 )};
@@ -195,10 +205,12 @@ var Bugs = new contact ("Bugs", "Bugsy", "07792929292", "musa@gmail.com", "Panya
 
 var Bob = new contact ("Bob", "Bobbert", "07792929292", "musa@gmail.com", "Panya3", "Kampala", "Uganda");
 
+
 console.log(Moses);
 console.log(Bill);
 console.log(Bugs);
 console.log(Bob);
 console.log(addressBook);
+
 
 functionList ();
