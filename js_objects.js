@@ -157,7 +157,9 @@ function contactEdit(contactID, contactField, newInput, a, b, c){
   contactExists = false;
   for(j=0; j<addressBook.length ; j++){
     if(addressBook[j][0] === contactID){
-      if(contactField === "firstName"){addressBook[j][2][0].firstName = newInput};
+      if(contactField === "firstName"){addressBook[j][2][0].firstName = newInput;
+        addressBook[j][1] = newInput;
+      };
       if(contactField === "secondName"){addressBook[j][2][0].secondName = newInput};
       if(contactField === "phoneNumber"){addressBook[j][2][0].phoneNumber = newInput};
       if(contactField === "ID"){addressBook[j][2][0].phoneNumber = newInput};
@@ -214,3 +216,5 @@ console.log(addressBook);
 
 
 functionList ();
+
+contactEdit(contactID, contactField, newInput, a, b, c)
