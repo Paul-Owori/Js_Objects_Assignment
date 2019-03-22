@@ -162,7 +162,7 @@ function contactEdit(contactID, contactField, newInput, a, b, c){
       };
       if(contactField === "secondName"){addressBook[j][2][0].secondName = newInput};
       if(contactField === "phoneNumber"){addressBook[j][2][0].phoneNumber = newInput};
-      if(contactField === "ID"){addressBook[j][2][0].phoneNumber = newInput};
+      if(contactField === "ID"){addressBook[j][2][0].ID = newInput};
       if(contactField === "address"){
         function addressEdit (q, d, d){
           addressBook[j][2][0].address = {}
