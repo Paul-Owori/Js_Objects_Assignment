@@ -32,7 +32,7 @@ function contact (firstName, secondName, phoneNumber, email, street, city, count
   this.ID = Math.floor((Math.random() * 100000000) + 200000000);
   //A random ID number between 100000000 and 200000000 is assigned to new contacts.
   this.fullAddress = function(){
-    console.log (this.address.street + ", " + this.address.city + ", " + this.address.country);
+    return (this.address.street + ", " + this.address.city + ", " + this.address.country);
   }; //When the this.fullAddress() function is called, it prints  the street, city and country of the contact.
   addressBook.push([this.ID,this.firstName,[this]]);
   //pushes the new contact contained within its own mini array to the address book in the format [this.ID,this.firstName,[this]]
@@ -151,6 +151,7 @@ is not required to make any of the functions work.
    a - fill in the new street value
    b - fill in the new city value
    c - fill in the new country value
+All input for this function should be entered in string except the ID number.
 */
 function contactEdit(contactID, contactField, newInput, a, b, c){
 
@@ -181,6 +182,24 @@ function contactEdit(contactID, contactField, newInput, a, b, c){
   };
 }
 
+/*
+Searches through the addressBook for a contact with a matching ID.
+Prints out the full address of the contact with a matching ID number.
+*/
+var fullAddress = (idNumber) => {
+  contactExists = false;
+  for(j=0; j<addressBook.length ; j++){
+    if(addressBook[j][0] === idNumber){
+    console.log(addressBook[j][2][0].fullAddress())
+    }
+    contactExists = true;
+
+  };
+  if(contactExists === false){
+      console.log("There is no contact with that ID.")
+    };
+
+}
 
 /*
 This function when called as functionList() just prints a list of all the functions available.
@@ -189,9 +208,10 @@ It's not necessary but is meant to help with navigation.
 function functionList (){console.log("List of all available functions;" +
 "\n 1. This function - functionList()" +
 "\n 2. contact (firstName, secondName, phoneNumber, email, street, city, country) " +
-"\n 3. contactEdit(contactID, contactField, newInput, a, b, c); " + "\n 4. permDel(idNumber)"
+"\n 3. contactEdit(idNumber, contactField, newInput, a, b, c); " + "\n 4. permDel(idNumber)"
 + "\n 5. recoverByID(idNumber)" + "\n 6. deleteByID(idNumber)" + "\n 7. searchByID(idNumber)" +
-"\n ALSO" + "\n - You can console.log(addressBook)"  + "\n - You can console.log(contactsBin)"
+"\n 7. fullAddress(idNumber)" + "\n ALSO" + "\n - You can console.log(addressBook)"  +
+ "\n - You can console.log(contactsBin)"
 )};
 
 
